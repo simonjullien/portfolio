@@ -1,0 +1,49 @@
+/* IMPORTS
+---------------------------------------------------------------------- */
+
+
+@import "mixins";
+
+/* FONT FACE
+---------------------------------------------------------------------- */
+
+/*@include font-face(
+	'simon',
+	font-files(
+		"DINNextLTPro-LightCondensed.otf"
+	),
+	"DINNextLTPro-LightCondensed.otf",
+	normal,
+	normal
+);*/
+
+/* FONT CLASSES
+---------------------------------------------------------------------- */
+
+/*%defaultFont {
+    font-family: HelveticaLTStd-Light, Helvetica, arial, "黑体", "微软雅黑", "宋体", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    //'Helvetica Neue', Helvetica, arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+%defaultBoldFont {
+    font-family: HelveticaLTCom-Bold, Helvetica, arial, "黑体", "微软雅黑", "宋体", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+%defaultLightFont {
+    font-family: HelveticaLTStd-Light, Helvetica, arial, "黑体", "微软雅黑", "宋体", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+%displayFont {
+    font-family: 'simon', 'Helvetica Neue', 'Helvetica', arial, "黑体", "微软雅黑", "宋体", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    font-weight: normal;
+    font-style: normal
+}*/
+@font-face {
+    font-family: "simon";
+    src: url('../fonts/DINNextLTPro-LightCondensed.otf');
+    font-weight: normal;
+    font-style: normal;
+}

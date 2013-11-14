@@ -1,0 +1,56 @@
+/* ==|== non-semantic helper classes ========================================
+   Please define your styles before this section.
+   ========================================================================== */
+
+/* For image replacement */
+@mixin ir(){ border: 0; font: 0/0 a; text-shadow: none; color: transparent; background-color: transparent; }
+
+/* Hide from both screenreaders and browsers: h5bp.com/u */
+@mixin hidden() { display: none !important; visibility: hidden; }
+.hidden { display: none !important; visibility: hidden; }
+
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+@mixin visuallyhidden() { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p */
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+
+/* Hide visually and from screenreaders, but maintain layout */
+@mixin invisible() { visibility: hidden; }
+
+/* Contain floats: h5bp.com/q */
+@mixin clearfix() {}
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
+
+@mixin font-face($name, $font-files, $eot: false, $weight: false, $style: false) {
+	$iefont: unquote("#{$eot}?#iefix");
+
+  @font-face {
+      font-family: $name;
+      src: font-url($eot);
+      $font-files: font-url($iefont) unquote("format('embedded-opentype')"), $font-files;
+      src: $font-files;
+  		font-weight: $weight;
+      font-style: $style;
+  }
+}
+
+
+@mixin user-select($val: none) {
+    -webkit-user-select: $val;
+     -khtml-user-select: $val;
+       -moz-user-select: $val;
+        -ms-user-select: $val;
+            user-select: $val;
+}
+
+@mixin font-smoothing($val: antialiased) {
+    -moz-osx-font-smoothing: grayscale; /* FF 25+ osx */
+          -webkit-font-smoothing: $val;
+             -moz-font-smoothing: $val;
+              -ms-font-smoothing: $val;
+               -o-font-smoothing: $val;
+                  font-smoothing: $val;
+}

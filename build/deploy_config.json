@@ -1,0 +1,94 @@
+{ "config": {
+	"sftp": {
+		"dev_main": {
+
+			"files": {
+				"./": "release/main/**"
+			},
+			"options": {
+				"path": "/www/",
+					"srcBasePath": "release/main/",
+					"host": "dev.clientwebsite.com",
+					"username": "<%= auth.resn.username %>",
+					"password": "<%= auth.resn.password %>",
+					"createDirectories": true,
+					"directoryPermissions": 493
+			}
+		},
+		"dev_cdn": {
+
+			"files": {
+				"./": "release/cdn/**/*"
+			},
+			"options": {
+				"path": "/www/",
+					"srcBasePath": "release/cdn/",
+					"host": "cdn.dev.clientwebsite.com",
+					"username": "<%= auth.resn.username %>",
+					"password": "<%= auth.resn.password %>",
+					"createDirectories": true,
+					"directoryPermissions": 493
+			}
+		},
+		"staging_main": {
+
+			"files": {
+				"./": "release/main/**"
+			},
+			"options": {
+				"path": "/www/",
+				"srcBasePath": "release/main/",
+				"host": "stage.clientwebsite.com",
+				"username": "<%= auth.production.username %>",
+				"password": "<%= auth.production.password %>",
+				"createDirectories": true,
+				"directoryPermissions": 493
+			}
+		},
+		"staging_cdn": {
+
+			"files": {
+				"./": "release/cdn/**/*"
+			},
+			"options": {
+				"path": "/www/",
+				"srcBasePath": "release/cdn/",
+				"host": "cdn.stage.clientwebsite.com",
+				"username": "<%= auth.production.username %>",
+				"password": "<%= auth.production.password %>",
+				"createDirectories": true,
+				"directoryPermissions": 493
+			}
+		},
+		"live_main": {
+
+			"files": {
+				"./": "release/main/**"
+			},
+			"options": {
+				"path": "/www/",
+				"srcBasePath": "release/main/",
+				"host": "www.clientwebsite.com",
+				"username": "<%= auth.production.username %>",
+				"password": "<%= auth.production.password %>",
+				"createDirectories": true,
+				"directoryPermissions": 493
+			}
+		},
+		"live_cdn": {
+
+			"files": {
+				"./": "release/cdn/**/*"
+			},
+			"options": {
+				"path": "/www/",
+				"srcBasePath": "release/cdn/",
+				"host": "cdn.clientwebsite.com",
+				"username": "<%= auth.production.username %>",
+				"password": "<%= auth.production.password %>",
+				"createDirectories": true,
+				"directoryPermissions": 493
+			}
+		}
+	}
+} }

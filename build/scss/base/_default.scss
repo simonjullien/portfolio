@@ -1,0 +1,143 @@
+/* IMPORTS
+---------------------------------------------------------------------- */
+
+
+/* DOCUMENT
+---------------------------------------------------------------------- */
+
+html {
+	min-height:100%;
+	padding:0;
+	margin:0;
+}
+
+body {
+	min-height:100%;
+	padding:0;
+	margin:0;
+	font-family: 'simon';
+	//@extend %displayFont;
+	overflow: hidden;
+	background-color:#a9cfd5;
+}
+
+/* BASIC STICKY FOOTER SETUP
+---------------------------------------------------------------------- */
+
+
+.shell{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	pointer-events: none;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #efefef;
+	-moz-box-shadow:inset 0px 0px 0px 0px #efefef;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+}
+
+.bg-container{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.pageContainer {
+	width: 100%;
+	padding-bottom:0px;
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+}
+.contentContainer {
+	width: 100%;
+	min-height:100%;
+	//background-color:#a9cfd5;
+	position:absolute;
+}
+.footerContainer {
+	margin-bottom:0px;
+	height:50px;
+	background-color:#dddddd;
+}
+
+/* ANCHORS & BUTTONS
+---------------------------------------------------------------------- */
+
+button:hover,
+button:active,
+button {
+}
+
+a, a:visited {
+	
+}
+
+a:hover {
+	
+}
+
+/* HEADINGS
+---------------------------------------------------------------------- */
+
+h1 {
+}
+
+h2 {
+}
+
+h3 {
+}
+
+h4 {
+}
+
+h5 {
+  
+}
+
+h6 {
+  
+}
+
+
+/* TEXT
+---------------------------------------------------------------------- */
+
+p {
+
+}
+
+em {
+
+}
+
+strong {
+
+}
+
+/* HORIZONTAL RULE
+---------------------------------------------------------------------- */
+
+hr {
+  
+}
+
+/* FORM ELEMENTS
+---------------------------------------------------------------------- */
+
+input[type=text] {
+  
+}
+
+textarea {
+  
+}
+
+label {
+  
+}
