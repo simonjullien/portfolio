@@ -57,7 +57,9 @@ define([
                 "onMouseClick",
                 "selectInfo",
                 "unselectInfo",
-                "removeInfo"
+                "removeInfo",
+                "linkAreaEnter",
+                "linkAreaLeave"
             );
             this.objTween = {'progress':0};
             this.objTweenLine = {'scalet':0.00001, 'scaleb':0.00001};
@@ -94,6 +96,9 @@ define([
             this.$info.on('click',this.selectInfo);
             this.$infoContainer.on('click',this.unselectInfo);
 
+            this.$links.on('mouseenter', this.linkAreaEnter);
+            this.$links.on('mouseleave', this.linkAreaLeave);
+
             this.affectTransformationsLine(this.$topLine);
             this.affectTransformationsLine(this.$bottomLine);
             for (var i = 0; i < this.$listLink.length; i++) {
@@ -125,6 +130,14 @@ define([
             }
         },
 
+        linkAreaEnter: function(){
+            this.trigger('HOME:OVER', 0);
+        },
+
+        linkAreaLeave: function(){
+            this.trigger('HOME:OUT');
+        },
+
         showLinks:function(){
             $('.logo-links-js').css({'display':'block'});
             TweenMax.to(this.objTweenLine, 2, {scalet:1, delay:0.9, onUpdate:this.affectTransformationsLine, onUpdateParams:[this.$topLine], ease:Expo.easeInOut});
@@ -149,8 +162,8 @@ define([
            event.preventDefault();
            if(!this.isInfoOpened){
                var $tg = $(event.currentTarget);
+               var attrID = $tg.attr('id');
                TweenMax.to($tg, 0.25, {alpha:1, ease:Expo.easeOut});
-               this.trigger('HOME:OVER');
            }
         },
 
@@ -159,7 +172,6 @@ define([
             if(!this.isInfoOpened){
                 var $tg = $(event.currentTarget);
                 TweenMax.to($tg, 0.5, {alpha:0.5, ease:Expo.easeOut});
-                this.trigger('HOME:OUT');
             }
         },
 

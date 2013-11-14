@@ -51,8 +51,8 @@ define([
             }
         },
 
-        triggerOver: function(){
-            this.bg.triggerOver();
+        triggerOver: function(id){
+            this.bg.triggerOver(id);
         },
 
         triggerOut: function(){

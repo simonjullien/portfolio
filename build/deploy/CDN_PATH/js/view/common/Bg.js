@@ -14,6 +14,7 @@ define([
     "handlebars",
     "view/common/base_view",
     "view/common/obj3d/Obj3d",
+    "view/common/obj3d/Obj3dRoll",
     "view/common/obj3d/Particules",
     "util/animation/AnimationUtil",
     "util/MathUtils",
@@ -35,6 +36,7 @@ define([
     Handlebars,
     BaseView,
     Obj3d,
+    Obj3dRoll,
     Particules,
     AnimationUtils,
     MathUtils,
@@ -52,6 +54,7 @@ define([
         parent:null,
         pointLight:null,
         listMesh:null,
+        listMeshRoll:null,
         particules:null,
 
         composer:null,
@@ -97,12 +100,22 @@ define([
 
             var geometry = new THREE.CubeGeometry(300, 300, 300, 1, 1, 1);
             var material = new THREE.MeshPhongMaterial( { ambient: 0xffffff, color: 0xffffff, specular: 0xffffff, shading: THREE.SmoothShading, transparent: false } );
-
+            var materialRoll = material.clone();
+            materialRoll.emissive.setHex(0xff0000);
+            //bg cubes
             this.listMesh = [];
             for ( var i = 0; i < 10; i ++ ) {
                 var tmpMesh = new Obj3d({geometry:geometry, material:material});
                 this.parent.add( tmpMesh.mesh );
                 this.listMesh.push(tmpMesh);
+            }
+
+            //roll over cubes
+            this.listMeshRoll = [];
+            for ( var j = 0; j < 15; j ++ ) {
+                var tmpMeshRoll = new Obj3dRoll({geometry:geometry, material:materialRoll});
+                this.parent.add( tmpMeshRoll.mesh );
+                this.listMeshRoll.push(tmpMeshRoll);
             }
 
             this.scene.add(this.parent);
@@ -111,23 +124,8 @@ define([
             window.addEventListener( 'resize', this.onWindowResize, false );
             window.addEventListener( 'mousemove', this.onMouseMove, false );
 
-            /*this.composer = new THREE.EffectComposer( this.renderer );
-            this.composer.addPass( new THREE.RenderPass( this.scene, this.camera ) );
-
-            this.hblur = new THREE.ShaderPass( THREE.HorizontalBlurShader );
-            this.composer.addPass( this.hblur );
-            this.hblur.uniforms[ 'h' ].value = 0.001;
-                
-            this.vblur = new THREE.ShaderPass( THREE.VerticalBlurShader );
-            this.vblur.renderToScreen = true;
-            this.composer.addPass( this.vblur );
-            this.vblur.uniforms[ 'v' ].value = 0.001;*/
-
             //this.createParticules();
             this.animate();
-
-
-            //this.animateTo();
         },
 
         onMouseMove:function(event){
@@ -149,23 +147,20 @@ define([
             }
         },
 
-        triggerOver: function(){
-            for (var i = 0; i < this.listMesh.length; i++) {
-                var currentM = this.listMesh[i];
-                currentM.moveItemToPosition();
+        triggerOver: function(id){
+            for (var i = 0; i < this.listMeshRoll.length; i++) {
+                var currentM = this.listMeshRoll[i];
+                currentM.moveItemToPosition(id, this.camera);
             }
-            /*TweenMax.killTweensOf(this.parent.rotation);
-            TweenMax.to(this.parent.rotation, 20, {
-                z:(Math.random() * Math.PI *2),
-                ease:Expo.easeInOut
-            });*/
+            this.hideCubes();
         },
 
         triggerOut: function(){
-            for (var i = 0; i < this.listMesh.length; i++) {
-                var currentM = this.listMesh[i];
+            for (var i = 0; i < this.listMeshRoll.length; i++) {
+                var currentM = this.listMeshRoll[i];
                 currentM.moveItem();
             }
+            this.showCubes();
         },
 
         createParticules: function(){
@@ -179,7 +174,6 @@ define([
             this.camera.updateProjectionMatrix();
 
             this.renderer.setSize( window.innerWidth, window.innerHeight );
-
         },
 
         goToBlack:function(){
@@ -224,15 +218,8 @@ define([
             this.tgRotationY += (this.mouseX - this.tgRotationY)*0.01;
             this.tgRotationX += (this.mouseY - this.tgRotationX)*0.01;
 
-            //this.parent.rotation.y = this.tgRotationY*MathUtils.DEG_2_RAD * 0.1;
-            //this.parent.rotation.x = this.tgRotationX*MathUtils.DEG_2_RAD * 0.1;
             this.camera.lookAt( this.scene.position );
 
-            /*for (var i = 0; i < this.listMesh.length; i++) {
-                var currentM = this.listMesh[i];
-                this.positionOnSpiral(currentM);
-                currentM.update(-1);
-            }*/
             if(this.particules){
                 this.particules.update();
             }
