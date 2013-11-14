@@ -35,6 +35,8 @@ define([
         progress:0,
         speed:0,
 
+        initialScale:null,
+
         initialize: function(options) {
             _.bindAll(this, "moveItem","moveItemToPosition");
             this.geometry = options.geometry;
@@ -47,6 +49,7 @@ define([
             var delay = 0;
             var time = Math.random() * 5 + 5;
             TweenMax.killTweensOf(this.mesh.position);
+            TweenMax.killTweensOf(this.mesh.scale);
             TweenMax.killTweensOf(this.mesh.rotation);
             TweenMax.to(this.mesh.position, time, {
                 x:(Math.random() * 1000 - 500),
@@ -57,6 +60,13 @@ define([
                 onCompleteParams:[this.mesh],
                 ease:Expo.easeInOut
             });
+            /*TweenMax.to(this.mesh.scale, time, {
+                x:this.initialScale.x,
+                y:this.initialScale.y,
+                z:this.initialScale.z,
+                delay:delay,
+                ease:Expo.easeInOut
+            });*/
             TweenMax.to(this.mesh.rotation, time, {
                 x:Math.random() * 1 * Math.PI,
                 y:Math.random() * 1 * Math.PI,
@@ -69,6 +79,7 @@ define([
             var delay = 0;
             var time = Math.random() * 2 + 2;
             TweenMax.killTweensOf(this.mesh.position);
+            TweenMax.killTweensOf(this.mesh.scale);
             TweenMax.killTweensOf(this.mesh.rotation);
             TweenMax.to(this.mesh.position, time, {
                 x:(Math.random() * 600 - 300),
@@ -79,6 +90,15 @@ define([
                 //onCompleteParams:[this.mesh],
                 ease:Expo.easeInOut
             });
+            /*TweenMax.to(this.mesh.scale, time, {
+                x:Math.random()*0.1,
+                y:Math.random()*0.1,
+                z:Math.random()*0.1,
+                delay:delay,
+                //onComplete:this.moveItemToPosition,
+                //onCompleteParams:[this.mesh],
+                ease:Expo.easeInOut
+            });*/
             TweenMax.to(this.mesh.rotation, time, {
                 x:0,
                 y:0,
@@ -138,9 +158,10 @@ define([
             this.mesh.rotation.x = Math.random() * 2 * Math.PI;
             this.mesh.rotation.y = Math.random() * 2 * Math.PI;
 
-            this.mesh.scale.x = Math.random() + 1;
-            this.mesh.scale.y = Math.random() + 1;
-            this.mesh.scale.z = Math.random() + 1;
+            this.initialScale = new THREE.Vector3(Math.random() + 1, Math.random() + 1, Math.random() + 1);
+            this.mesh.scale.x = this.initialScale.x;
+            this.mesh.scale.y = this.initialScale.y;
+            this.mesh.scale.z = this.initialScale.z;
 
             this.moveItem();
         },
